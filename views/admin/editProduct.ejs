@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"></link>
+    <title><%=title%></title>
+</head>
+<body>
+    <div>
+              <div class="container">
+                <div class="columns is-centered">
+                  <div class="column is-one-quarter">
+                    <form method="POST" action="/admin/products/<%=typicalProduct._id%>/edit" enctype="multipart/form-data">         
+                      <h1 class="title">Edit the product</h1>
+                      <% if(messages.length >0 ){ %>
+                        <div class="help is-danger">
+                            <% messages.forEach(errors =>{  %>
+                            <%= errors %> <br>
+                            <%  } )  %>
+                        </div>
+                        <% } %>
+                      <div class="field">
+                        <label class="label">Title</label>
+                        <input class="input" value="<%=typicalProduct.title%>" name="title" />
+                      </div>
+                      <div class="field">
+                        <label class="label">Price</label>
+                        <input class="input" placeholder="price" value="<%=typicalProduct.price%>" name="price" type="number" />
+                      </div>
+                      <div class="field">
+                        <label class="label">Image</label>
+                        <input class="input"  type="file" placeholder="select a file" value="<%=typicalProduct.image%>" name="image"/>
+                      </div>
+                      <button class="button is-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>

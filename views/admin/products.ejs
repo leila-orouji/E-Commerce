@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"></link>
+    <title>Document</title>
+</head>
+<body>
+
+  
+  <div class="control">
+    <h1 class="subtitle">Products</h1>  
+    <a href="/admin/products/NewProduct" class="button is-primary">New Product</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <% products.forEach(product =>{%>
+        <tr>
+            <td><%= product.title%></td>
+            <td><%=product.price%></td>
+            <td>
+              <a href="/admin/products/<%=product._id%>/edit">
+                <button class="button is-link">
+                  Edit
+                </button>
+              </a>
+            </td>
+            <td>
+              <a href="/admin/products/<%=product._id%>/delete">
+              <button class="button is-danger">Delete</button>
+            </a>
+            </td>
+          </tr>
+    <%})%>
+    </thead>
+    <tbody>
+      <!-- ${renderedProducts} -->
+    </tbody>
+  </table>
+
+
+</body>
+</html>
+
