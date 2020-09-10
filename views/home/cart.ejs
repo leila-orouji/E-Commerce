@@ -66,40 +66,46 @@
     </section>
 
     <section>
-        <div class="container">
+        <div id="cart" class="container">
             <div class="columns">
-                <div class="column "></div>
+                <div class="column"></div>
                 <div class="column is-four-fifths">
-                    <div>
-                        <h2 class="title text-center">Featured Items</h2>
-                        <div class="columns products">
-                            <div class="column is-one-quarter">
-                                <% for (item of products) {%>
-                                <div class="card product-card">
-                                    
-                                    <figure>
-                                        <img style="widows: 160px; height: 160px;" src="<%=item.image%>" />
-                                    </figure>
-                                    <div class="card-content">
-                                        <h3 class="subtitle"><%=item.title%></h3>
-                                        <h5><%=item.price%></h5>
-                                    </div>
-                
-                                    <footer class="card-footer">
-                                        <form action="/cart/products" method="POST">
-                                            <input hidden value="<%=item.id%>" name="productId">
-                                            <button class="button has-icon is-inverted">
-                                                <i class="fa fa-shopping-cart"></i> Add to cart
-                                            </button>
-                                        </form>
-                                    </footer>
+                    <h3 class="subtitle"><b>Shopping Cart</b></h3>
+                    <% customerBill.product.forEach( item =>{ %>
+                       
+                            <div class="cart-item message">
+                                <h3 class="subtitle"><%= item.product.title%></h3>
+                                <div class="cart-right">
+                                    <div> <%= item.product.price %> X <%= item.count%> = </div>
                                 </div>
-                                <%}%>
+                                    <div class="price is=size-4">
+                                         <%= item.product.price * item.count %>
+                                    </div>
+                                
+                                <div class="remove">
+                                    <form action="/cart/delete" method="POST" >
+                                        <input type="hidden" name="productId" value="<%=item.productId%>">
+                                        <input type="hidden" name="cartId" value="<%=item.cartId%>">
+                                        <button class="button is-danger">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-times"></i>
+                                            </span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
+                          
+                    <% }) %>
+                   
+                    <div class="total message is-info">
+                        <div class="message-header">
+                            Total
                         </div>
+                        <h1 class="title"><%=total%></h1>
+                        <button class="button is-danger">Buy</button>
                     </div>
                 </div>
-                <div class="column "></div>
+                <div class="column"></div>
             </div>
         </div>
     </section>

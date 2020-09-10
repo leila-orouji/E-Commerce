@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');
 const home = require('./routes/home/home');
 const authRouter = require('./routes/admin/auth');
 const products = require('./routes/admin/products');
+const cart = require('./routes/home/cart');
 
 //Set config mongoose
 mongoose.Promise = global.Promise;
@@ -27,6 +28,7 @@ app.use(cookieSession({
 app.use(authRouter);
 app.use(home);
 app.use(products);
+app.use(cart)
 
 
 
